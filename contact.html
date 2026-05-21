@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact &middot; Proformance Athlete Development</title>
+<style>
+  :root {
+    --pf-black: #0A0A0A; --pf-black-deep: #000000; --pf-charcoal: #161A1F;
+    --pf-card: #14181D; --pf-card-lift: #1A1F26;
+    --pf-cyan: #00BCE4; --pf-cyan-bright: #1DD3F0; --pf-cyan-dim: #007A95;
+    --pf-yellow: #F5C518; --pf-magenta: #E91E63; --pf-lime: #B5D935;
+    --pf-text: #F5F7FA; --pf-text-sec: #B8C2CC; --pf-text-muted: #6C7984;
+    --pf-border: #2A3037; --pf-border-lt: #1F252B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; background: var(--pf-black); color: var(--pf-text); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  a { color: var(--pf-cyan); text-decoration: none; }
+  a:hover { color: var(--pf-cyan-bright); }
+
+  .topnav { position: sticky; top: 0; z-index: 50; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--pf-border-lt); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .topnav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .topnav-brand img { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; }
+  .topnav-brand-text { display: flex; flex-direction: column; line-height: 1; }
+  .topnav-brand-name { font-size: 16px; font-weight: 900; color: var(--pf-text); letter-spacing: -0.3px; }
+  .topnav-brand-name span { color: var(--pf-cyan); }
+  .topnav-brand-tag { font-size: 9px; font-weight: 700; letter-spacing: 2.2px; color: var(--pf-text-muted); text-transform: uppercase; margin-top: 4px; }
+  .topnav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .topnav-links a { font-size: 13px; font-weight: 600; color: var(--pf-text-sec); padding: 8px 14px; border-radius: 6px; }
+  .topnav-links a:hover { background: rgba(0,188,228,0.10); color: var(--pf-cyan); }
+  .topnav-links a.active { background: var(--pf-cyan); color: var(--pf-black); }
+
+  .page { max-width: 1080px; margin: 0 auto; padding: 60px 40px 80px; }
+  .h-rule { width: 72px; height: 4px; background: var(--pf-cyan); border-radius: 2px; margin-bottom: 22px; }
+  .h-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.6px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 22px; }
+  .h-title { font-size: 56px; font-weight: 900; color: var(--pf-text); letter-spacing: -1.6px; line-height: 1.04; margin-bottom: 20px; }
+  .h-sub { font-size: 17px; color: var(--pf-text-sec); line-height: 1.7; max-width: 720px; margin-bottom: 14px; }
+  .h-sub strong { color: var(--pf-text); font-weight: 600; }
+
+  .grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; margin-top: 48px; }
+
+  .card { background: var(--pf-card); border: 1px solid var(--pf-border-lt); border-radius: 16px; padding: 36px 36px; }
+  .card-lbl { font-size: 11px; font-weight: 800; letter-spacing: 2.4px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 14px; }
+  .card-h { font-size: 22px; font-weight: 800; color: var(--pf-text); letter-spacing: -0.4px; margin-bottom: 18px; line-height: 1.2; }
+  .card-body { font-size: 14.5px; color: var(--pf-text-sec); line-height: 1.75; }
+  .card-body strong { color: var(--pf-text); font-weight: 600; }
+  .card-body p { margin-bottom: 12px; }
+
+  .addr { font-size: 16px; color: var(--pf-text); line-height: 1.7; }
+  .addr-link { font-size: 12.5px; color: var(--pf-cyan); margin-top: 14px; display: inline-block; }
+
+  .info-row { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px dashed var(--pf-border-lt); align-items: baseline; }
+  .info-row:last-child { border-bottom: none; }
+  .info-key { font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; color: var(--pf-text-muted); text-transform: uppercase; }
+  .info-val { font-size: 13.5px; color: var(--pf-text); }
+  .info-val.tbc { color: var(--pf-text-muted); font-style: italic; }
+
+  .placeholder-banner { background: rgba(245,197,24,0.06); border: 1px solid rgba(245,197,24,0.30); border-left: 4px solid var(--pf-yellow); border-radius: 10px; padding: 18px 22px; margin-top: 32px; font-size: 13.5px; color: var(--pf-text-sec); line-height: 1.6; }
+  .placeholder-banner strong { color: var(--pf-yellow); font-weight: 700; }
+
+  .foot { margin-top: 80px; padding: 30px 0 0; border-top: 1px solid var(--pf-border-lt); font-size: 12px; color: var(--pf-text-muted); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .foot a { color: var(--pf-text-sec); }
+  .foot a:hover { color: var(--pf-cyan); }
+
+  @media (max-width: 980px) {
+    .h-title { font-size: 38px; }
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 26px 22px; }
+    .info-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+    .page { padding: 36px 22px 60px; }
+    .topnav { padding: 12px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html" class="topnav-brand">
+    <img src="assets/images/proformance-logo.jpg" alt="Proformance">
+    <div class="topnav-brand-text">
+      <div class="topnav-brand-name"><span>PRO</span>FORMANCE</div>
+      <div class="topnav-brand-tag">Athlete Development</div>
+    </div>
+  </a>
+  <div class="topnav-links">
+    <a href="index.html">Home</a>
+    <a href="approach.html">Our Approach</a>
+    <a href="team.html">The Team</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="h-rule"></div>
+  <div class="h-eyebrow">Contact</div>
+  <h1 class="h-title">Find us. Get in touch.</h1>
+  <p class="h-sub">Proformance is based at the <strong>Beacon of Light</strong> in Sunderland — a purpose-built sport and community venue with the kit and space to do the work properly.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-lbl">Where to find us</div>
+      <h2 class="card-h">Beacon of Light, Sunderland</h2>
+      <div class="addr">
+        Beacon of Light<br>
+        Vaux Brewery Way<br>
+        Sunderland<br>
+        Tyne and Wear<br>
+        SR5 1SN
+      </div>
+      <a href="https://maps.google.com/?q=Beacon+of+Light+Sunderland+SR5+1SN" class="addr-link" target="_blank" rel="noopener">Open in Google Maps →</a>
+    </div>
+
+    <div class="card">
+      <div class="card-lbl">Get in touch</div>
+      <h2 class="card-h">Working with Proformance</h2>
+      <div class="card-body">
+        <p>If you're an athlete, parent, agent or club looking to discuss working with Proformance, contact details to be added below.</p>
+      </div>
+
+      <div style="margin-top: 18px;">
+        <div class="info-row">
+          <div class="info-key">Email</div>
+          <div class="info-val tbc">to be added</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Phone</div>
+          <div class="info-val tbc">to be added</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Instagram</div>
+          <div class="info-val tbc">to be added</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="placeholder-banner">
+    <strong>Placeholder.</strong> Contact details (email, phone, social) and any preferred enquiry route are TBC. Drop the values into the three rows in the &lsquo;Get in touch&rsquo; card on this page.
+  </div>
+
+  <div class="grid" style="margin-top: 24px;">
+    <div class="card">
+      <div class="card-lbl">Company details</div>
+      <div class="info-row">
+        <div class="info-key">Legal name</div>
+        <div class="info-val">Proformance Athlete Development Limited</div>
+      </div>
+      <div class="info-row">
+        <div class="info-key">Company no.</div>
+        <div class="info-val">14717366</div>
+      </div>
+      <div class="info-row">
+        <div class="info-key">Registered in</div>
+        <div class="info-val">England and Wales</div>
+      </div>
+      <div class="info-row">
+        <div class="info-key">Registered office</div>
+        <div class="info-val">Beacon of Light, Vaux Brewery Way, Sunderland, Tyne and Wear, SR5 1SN</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Already an athlete with us?</div>
+      <h2 class="card-h">Talk to your coach directly</h2>
+      <div class="card-body">
+        <p>For programming questions, session bookings or testing scheduling, the quickest route is your assigned coach. They've got the context.</p>
+        <p>For wider queries — invoicing, club partnerships, new athlete enquiries — use the channels in the &lsquo;Get in touch&rsquo; card above.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <div>Proformance Athlete Development Limited &middot; Company No. 14717366</div>
+    <div><a href="index.html">Home</a> &middot; <a href="approach.html">Our Approach</a> &middot; <a href="team.html">The Team</a></div>
+  </footer>
+
+</div>
+
+</body>
+</html>

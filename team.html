@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Team &middot; Proformance Athlete Development</title>
+<style>
+  :root {
+    --pf-black: #0A0A0A; --pf-black-deep: #000000; --pf-charcoal: #161A1F;
+    --pf-card: #14181D; --pf-card-lift: #1A1F26;
+    --pf-cyan: #00BCE4; --pf-cyan-bright: #1DD3F0; --pf-cyan-dim: #007A95;
+    --pf-yellow: #F5C518; --pf-magenta: #E91E63; --pf-lime: #B5D935;
+    --pf-text: #F5F7FA; --pf-text-sec: #B8C2CC; --pf-text-muted: #6C7984;
+    --pf-border: #2A3037; --pf-border-lt: #1F252B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    background: var(--pf-black); color: var(--pf-text); line-height: 1.6;
+    -webkit-font-smoothing: antialiased; min-height: 100vh;
+  }
+  a { color: var(--pf-cyan); text-decoration: none; }
+  a:hover { color: var(--pf-cyan-bright); }
+
+  .topnav { position: sticky; top: 0; z-index: 50; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--pf-border-lt); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .topnav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .topnav-brand img { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; }
+  .topnav-brand-text { display: flex; flex-direction: column; line-height: 1; }
+  .topnav-brand-name { font-size: 16px; font-weight: 900; letter-spacing: -0.3px; color: var(--pf-text); }
+  .topnav-brand-name span { color: var(--pf-cyan); }
+  .topnav-brand-tag { font-size: 9px; font-weight: 700; letter-spacing: 2.2px; color: var(--pf-text-muted); text-transform: uppercase; margin-top: 4px; }
+  .topnav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .topnav-links a { font-size: 13px; font-weight: 600; color: var(--pf-text-sec); padding: 8px 14px; border-radius: 6px; }
+  .topnav-links a:hover { background: rgba(0,188,228,0.10); color: var(--pf-cyan); }
+  .topnav-links a.active { background: var(--pf-cyan); color: var(--pf-black); }
+
+  .page { max-width: 1100px; margin: 0 auto; padding: 60px 40px 0; }
+
+  .h-rule { width: 72px; height: 4px; background: var(--pf-cyan); border-radius: 2px; margin-bottom: 22px; }
+  .h-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.6px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 22px; }
+  .h-title { font-size: 56px; font-weight: 900; color: var(--pf-text); letter-spacing: -1.6px; line-height: 1.04; margin-bottom: 20px; }
+  .h-sub { font-size: 17px; color: var(--pf-text-sec); line-height: 1.7; max-width: 720px; margin-bottom: 14px; }
+  .h-sub strong { color: var(--pf-text); font-weight: 600; }
+
+  /* Founder hero strip */
+  .founder {
+    margin: 50px 0 32px;
+    background: var(--pf-card);
+    border: 1px solid var(--pf-border-lt);
+    border-left: 4px solid var(--pf-cyan);
+    border-radius: 18px;
+    padding: 32px 36px;
+    display: grid; grid-template-columns: 140px 1fr auto; gap: 28px; align-items: center;
+    text-decoration: none; color: inherit;
+    transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+  }
+  .founder:hover { transform: translateY(-2px); border-color: var(--pf-cyan); box-shadow: 0 14px 38px rgba(0,0,0,0.5); }
+  .founder-portrait {
+    width: 140px; height: 140px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pf-charcoal) 0%, var(--pf-card-lift) 100%);
+    border: 2px solid var(--pf-cyan);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px; font-weight: 900; color: var(--pf-cyan); letter-spacing: -2px;
+    overflow: hidden;
+  }
+  .founder-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .founder-tag { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 6px; }
+  .founder-name { font-size: 32px; font-weight: 900; color: var(--pf-text); letter-spacing: -0.8px; line-height: 1.1; margin-bottom: 6px; }
+  .founder-role { font-size: 14px; font-weight: 600; color: var(--pf-text-sec); margin-bottom: 10px; }
+  .founder-quals { font-size: 12px; color: var(--pf-text-muted); letter-spacing: 0.4px; }
+  .founder-cta {
+    background: var(--pf-cyan); color: var(--pf-black);
+    padding: 12px 22px; border-radius: 10px;
+    font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* Team grid */
+  .grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    margin-bottom: 48px;
+  }
+  .member {
+    background: var(--pf-card); border: 1px solid var(--pf-border-lt); border-radius: 14px;
+    padding: 28px 22px 22px; text-align: center;
+    text-decoration: none; color: inherit;
+    transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+    display: flex; flex-direction: column;
+  }
+  .member:hover { transform: translateY(-3px); border-color: var(--pf-cyan); box-shadow: 0 12px 32px rgba(0,0,0,0.5); }
+  .member-portrait {
+    width: 130px; height: 130px; margin: 0 auto 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pf-charcoal) 0%, var(--pf-card-lift) 100%);
+    border: 2px solid var(--pf-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; font-weight: 900; color: var(--pf-cyan); letter-spacing: -1.4px;
+    overflow: hidden;
+    transition: border-color 0.18s;
+  }
+  .member-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .member:hover .member-portrait { border-color: var(--pf-cyan); }
+  .member-name { font-size: 17px; font-weight: 800; color: var(--pf-text); letter-spacing: -0.3px; margin-bottom: 6px; }
+  .member-role { font-size: 10.5px; font-weight: 800; color: var(--pf-cyan); text-transform: uppercase; letter-spacing: 1.6px; margin-bottom: 12px; }
+  .member-quals { font-size: 11.5px; color: var(--pf-text-muted); letter-spacing: 0.3px; margin-bottom: 14px; min-height: 28px; }
+  .member-bio { font-size: 12.5px; color: var(--pf-text-sec); line-height: 1.6; flex-grow: 1; margin-bottom: 14px; }
+  .member-cta { font-size: 11px; font-weight: 700; color: var(--pf-cyan); letter-spacing: 0.6px; text-transform: uppercase; }
+
+  .member.placeholder .member-portrait {
+    background: repeating-linear-gradient(45deg, var(--pf-charcoal), var(--pf-charcoal) 6px, var(--pf-card) 6px, var(--pf-card) 12px);
+    color: var(--pf-text-muted); font-size: 14px; letter-spacing: 1.2px;
+  }
+  .member.placeholder .member-name { color: var(--pf-text-muted); }
+  .member.placeholder .member-role { color: var(--pf-text-muted); }
+  .member.placeholder { cursor: default; }
+  .member.placeholder:hover { transform: none; border-color: var(--pf-border-lt); box-shadow: none; }
+
+  /* Footer */
+  .foot { margin-top: 80px; padding: 40px 0 36px; border-top: 1px solid var(--pf-border-lt); font-size: 12px; color: var(--pf-text-muted); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .foot a { color: var(--pf-text-sec); }
+  .foot a:hover { color: var(--pf-cyan); }
+
+  @media (max-width: 980px) {
+    .h-title { font-size: 38px; }
+    .founder { grid-template-columns: 1fr; text-align: center; padding: 28px 22px; }
+    .founder-portrait { margin: 0 auto; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .page { padding: 36px 22px 0; }
+    .topnav { padding: 12px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html" class="topnav-brand">
+    <img src="assets/images/proformance-logo.jpg" alt="Proformance">
+    <div class="topnav-brand-text">
+      <div class="topnav-brand-name"><span>PRO</span>FORMANCE</div>
+      <div class="topnav-brand-tag">Athlete Development</div>
+    </div>
+  </a>
+  <div class="topnav-links">
+    <a href="index.html">Home</a>
+    <a href="approach.html">Our Approach</a>
+    <a href="team.html" class="active">The Team</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="h-rule"></div>
+  <div class="h-eyebrow">The Coaches</div>
+  <h1 class="h-title">The people on the floor.</h1>
+  <p class="h-sub">Proformance is built around the coaches who work directly with athletes. Every coach on the floor is involved in programme design and athlete delivery — there are no &lsquo;floor staff&rsquo; reading from a sheet. Knowledge of the athlete sits with the person coaching them.</p>
+
+  <!-- Founder card -->
+  <a href="lee-moore.html" class="founder">
+    <div class="founder-portrait">LM</div>
+    <div>
+      <div class="founder-tag">Founder &middot; Head Coach</div>
+      <div class="founder-name">Lee Moore</div>
+      <div class="founder-role">Founder and Head Coach &middot; Strength &amp; Conditioning</div>
+      <div class="founder-quals">MSc &middot; BSc &middot; BWL &middot; CSAC &middot; ASCC</div>
+    </div>
+    <div class="founder-cta">View profile →</div>
+  </a>
+
+  <!-- Other coaches -->
+  <div class="grid">
+    <a href="keith-mcgrath.html" class="member">
+      <div class="member-portrait">KM</div>
+      <div class="member-name">Keith McGrath</div>
+      <div class="member-role">S&amp;C Coach</div>
+      <div class="member-quals">Qualifications to follow</div>
+      <div class="member-bio">Coaching profile and biography to be added.</div>
+      <div class="member-cta">View profile →</div>
+    </a>
+    <a href="mackenzie-heaney.html" class="member">
+      <div class="member-portrait">MH</div>
+      <div class="member-name">Mackenzie Heaney</div>
+      <div class="member-role">S&amp;C Coach</div>
+      <div class="member-quals">Qualifications to follow</div>
+      <div class="member-bio">Coaching profile and biography to be added.</div>
+      <div class="member-cta">View profile →</div>
+    </a>
+    <div class="member placeholder">
+      <div class="member-portrait">TBC</div>
+      <div class="member-name">Coach</div>
+      <div class="member-role">S&amp;C Coach</div>
+      <div class="member-quals">&nbsp;</div>
+      <div class="member-bio">Profile to follow.</div>
+      <div class="member-cta">&nbsp;</div>
+    </div>
+    <div class="member placeholder">
+      <div class="member-portrait">TBC</div>
+      <div class="member-name">Coach</div>
+      <div class="member-role">S&amp;C Coach</div>
+      <div class="member-quals">&nbsp;</div>
+      <div class="member-bio">Profile to follow.</div>
+      <div class="member-cta">&nbsp;</div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <div>Proformance Athlete Development Limited &middot; Company No. 14717366</div>
+    <div><a href="index.html">Home</a> &middot; <a href="approach.html">Our Approach</a> &middot; <a href="contact.html">Contact</a></div>
+  </footer>
+
+</div>
+
+</body>
+</html>

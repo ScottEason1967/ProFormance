@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Approach &middot; Proformance Athlete Development</title>
+<style>
+  :root {
+    --pf-black: #0A0A0A;
+    --pf-black-deep: #000000;
+    --pf-charcoal: #161A1F;
+    --pf-card: #14181D;
+    --pf-card-lift: #1A1F26;
+    --pf-cyan: #00BCE4;
+    --pf-cyan-bright: #1DD3F0;
+    --pf-cyan-dim: #007A95;
+    --pf-yellow: #F5C518;
+    --pf-magenta: #E91E63;
+    --pf-lime: #B5D935;
+    --pf-text: #F5F7FA;
+    --pf-text-sec: #B8C2CC;
+    --pf-text-muted: #6C7984;
+    --pf-border: #2A3037;
+    --pf-border-lt: #1F252B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    background: var(--pf-black); color: var(--pf-text); line-height: 1.6;
+    -webkit-font-smoothing: antialiased; min-height: 100vh;
+  }
+  a { color: var(--pf-cyan); text-decoration: none; }
+  a:hover { color: var(--pf-cyan-bright); }
+
+  .topnav { position: sticky; top: 0; z-index: 50; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--pf-border-lt); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .topnav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .topnav-brand img { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; }
+  .topnav-brand-text { display: flex; flex-direction: column; line-height: 1; }
+  .topnav-brand-name { font-size: 16px; font-weight: 900; letter-spacing: -0.3px; color: var(--pf-text); }
+  .topnav-brand-name span { color: var(--pf-cyan); }
+  .topnav-brand-tag { font-size: 9px; font-weight: 700; letter-spacing: 2.2px; color: var(--pf-text-muted); text-transform: uppercase; margin-top: 4px; }
+  .topnav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .topnav-links a { font-size: 13px; font-weight: 600; color: var(--pf-text-sec); padding: 8px 14px; border-radius: 6px; }
+  .topnav-links a:hover { background: rgba(0,188,228,0.10); color: var(--pf-cyan); }
+  .topnav-links a.active { background: var(--pf-cyan); color: var(--pf-black); }
+
+  .page { max-width: 1100px; margin: 0 auto; padding: 60px 40px 0; }
+
+  .h-rule { width: 72px; height: 4px; background: var(--pf-cyan); border-radius: 2px; margin-bottom: 22px; }
+  .h-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.6px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 22px; }
+  .h-title { font-size: 56px; font-weight: 900; color: var(--pf-text); letter-spacing: -1.6px; line-height: 1.04; margin-bottom: 20px; max-width: 880px; }
+  .h-title em { color: var(--pf-cyan); font-style: normal; }
+  .h-sub { font-size: 18px; color: var(--pf-text-sec); line-height: 1.7; max-width: 760px; margin-bottom: 14px; }
+  .h-sub strong { color: var(--pf-text); font-weight: 600; }
+
+  .section { margin: 64px 0; padding-top: 36px; border-top: 1px solid var(--pf-border-lt); }
+  .section-h { font-size: 30px; font-weight: 900; color: var(--pf-text); letter-spacing: -0.7px; line-height: 1.15; margin-bottom: 12px; max-width: 800px; }
+  .section-h span { color: var(--pf-cyan); }
+  .section-h.y span { color: var(--pf-yellow); }
+  .section-h.m span { color: var(--pf-magenta); }
+  .section-h.l span { color: var(--pf-lime); }
+  .section-intro { font-size: 15.5px; color: var(--pf-text-sec); line-height: 1.75; max-width: 760px; margin-bottom: 30px; }
+  .section-intro strong { color: var(--pf-text); font-weight: 600; }
+
+  /* Battery — testing categories */
+  .battery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .bat {
+    background: var(--pf-card); border: 1px solid var(--pf-border-lt); border-radius: 14px; padding: 26px 26px 22px;
+    border-top: 3px solid var(--accent, var(--pf-cyan));
+  }
+  .bat-cat { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--accent, var(--pf-cyan)); text-transform: uppercase; margin-bottom: 10px; }
+  .bat-h { font-size: 18px; font-weight: 800; color: var(--pf-text); letter-spacing: -0.3px; margin-bottom: 14px; }
+  .bat-list { list-style: none; padding: 0; margin: 0; }
+  .bat-list li { font-size: 13.5px; color: var(--pf-text-sec); line-height: 1.6; padding: 8px 0; border-bottom: 1px dashed var(--pf-border-lt); display: flex; justify-content: space-between; gap: 10px; }
+  .bat-list li:last-child { border-bottom: none; }
+  .bat-list li span.metric { color: var(--pf-text-muted); font-size: 11.5px; letter-spacing: 0.3px; }
+
+  .bat-speed { --accent: var(--pf-magenta); }
+  .bat-power { --accent: var(--pf-yellow); }
+  .bat-strength { --accent: var(--pf-cyan); }
+  .bat-core { --accent: var(--pf-lime); }
+
+  /* Movement framework table */
+  .moves { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 6px; }
+  .move {
+    background: var(--pf-card); border: 1px solid var(--pf-border-lt); border-radius: 12px;
+    padding: 18px 14px; text-align: center;
+  }
+  .move-name { font-size: 11px; font-weight: 800; letter-spacing: 1.8px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 12px; }
+  .move-icon { width: 44px; height: 44px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
+  .move-level { font-size: 10px; font-weight: 700; color: var(--pf-text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .move-ex { font-size: 12.5px; color: var(--pf-text); font-weight: 600; line-height: 1.3; min-height: 30px; }
+
+  /* Programming flow */
+  .prog-flow { background: var(--pf-card); border: 1px solid var(--pf-border-lt); border-radius: 16px; padding: 32px; margin-top: 8px; }
+  .prog-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 24px; }
+  .prog-day { padding: 14px 10px; border-radius: 10px; background: var(--pf-card-lift); border: 1px solid var(--pf-border-lt); text-align: center; }
+  .prog-day-lbl { font-size: 10px; font-weight: 800; letter-spacing: 1.4px; color: var(--pf-text-muted); text-transform: uppercase; margin-bottom: 6px; }
+  .prog-day-type { font-size: 11px; font-weight: 700; color: var(--pf-text); letter-spacing: 0.2px; }
+  .prog-day.match { background: rgba(245,197,24,0.10); border-color: rgba(245,197,24,0.30); }
+  .prog-day.match .prog-day-lbl { color: var(--pf-yellow); }
+  .prog-day.primer { background: rgba(0,188,228,0.08); border-color: rgba(0,188,228,0.25); }
+  .prog-day.primer .prog-day-lbl { color: var(--pf-cyan); }
+  .prog-day.strength { background: rgba(233,30,99,0.08); border-color: rgba(233,30,99,0.25); }
+  .prog-day.strength .prog-day-lbl { color: var(--pf-magenta); }
+  .prog-key { font-size: 12.5px; color: var(--pf-text-sec); line-height: 1.7; }
+  .prog-key strong { color: var(--pf-text); }
+
+  /* LTAD ladder */
+  .ladder { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 10px; }
+  .ladder-step { background: var(--pf-card); border: 1px solid var(--pf-border-lt); border-radius: 14px; padding: 26px 24px; border-left: 3px solid var(--pf-cyan); }
+  .ladder-stage { font-size: 11px; font-weight: 800; letter-spacing: 1.8px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 8px; }
+  .ladder-h { font-size: 17px; font-weight: 800; color: var(--pf-text); margin-bottom: 10px; letter-spacing: -0.2px; }
+  .ladder-body { font-size: 13.5px; color: var(--pf-text-sec); line-height: 1.65; }
+
+  /* Footer */
+  .foot { margin-top: 80px; padding: 40px 0 36px; border-top: 1px solid var(--pf-border-lt); font-size: 12px; color: var(--pf-text-muted); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .foot a { color: var(--pf-text-sec); }
+  .foot a:hover { color: var(--pf-cyan); }
+
+  @media (max-width: 980px) {
+    .h-title { font-size: 38px; }
+    .battery, .ladder { grid-template-columns: 1fr; }
+    .moves { grid-template-columns: repeat(3, 1fr); }
+    .prog-week { grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .prog-day { padding: 10px 4px; }
+    .prog-day-type { font-size: 9.5px; }
+    .page { padding: 36px 22px 0; }
+    .topnav { padding: 12px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html" class="topnav-brand">
+    <img src="assets/images/proformance-logo.jpg" alt="Proformance">
+    <div class="topnav-brand-text">
+      <div class="topnav-brand-name"><span>PRO</span>FORMANCE</div>
+      <div class="topnav-brand-tag">Athlete Development</div>
+    </div>
+  </a>
+  <div class="topnav-links">
+    <a href="index.html">Home</a>
+    <a href="approach.html" class="active">Our Approach</a>
+    <a href="team.html">The Team</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="h-rule"></div>
+  <div class="h-eyebrow">Our Approach</div>
+  <h1 class="h-title">Test. Train. Track. <em>Adapt.</em></h1>
+  <p class="h-sub">Every athlete who joins Proformance starts with a baseline. We measure where you are, build a programme around it, then re-test on a cycle so progress is in the numbers, not the noise. <strong>Sports science isn't a marketing line at Proformance — it's the operating system.</strong></p>
+  <p class="h-sub">The four sections below set out how we work: the testing battery, the movement framework, how we programme around competition, and the long-term arc that ties it all together.</p>
+
+  <!-- Section 1: Testing battery -->
+  <section class="section">
+    <h2 class="section-h"><span>01.</span> Performance testing battery</h2>
+    <p class="section-intro">Four categories of test, run on a cycle. Each test produces a number we keep across years, so we can see what's improving, what's plateaued, and what needs a different stimulus. <strong>If we're not measuring it, we're not training it properly.</strong></p>
+
+    <div class="battery">
+      <div class="bat bat-speed">
+        <div class="bat-cat">Speed</div>
+        <div class="bat-h">Acceleration over short distances</div>
+        <ul class="bat-list">
+          <li>5m Sprint <span class="metric">seconds</span></li>
+          <li>10m Sprint <span class="metric">seconds</span></li>
+        </ul>
+      </div>
+      <div class="bat bat-power">
+        <div class="bat-cat">Power</div>
+        <div class="bat-h">Lower-limb force expression</div>
+        <ul class="bat-list">
+          <li>Broad Jump <span class="metric">cm</span></li>
+          <li>Countermovement Jump <span class="metric">cm</span></li>
+          <li>Abalakov Jump <span class="metric">cm</span></li>
+          <li>Drop Jump <span class="metric">RSI / m·s⁻¹</span></li>
+        </ul>
+      </div>
+      <div class="bat bat-strength">
+        <div class="bat-cat">Strength</div>
+        <div class="bat-h">Maximal force production</div>
+        <ul class="bat-list">
+          <li>Isometric Mid-Thigh Pull <span class="metric">N &middot; xBW &middot; N/kg</span></li>
+        </ul>
+      </div>
+      <div class="bat bat-core">
+        <div class="bat-cat">Core</div>
+        <div class="bat-h">Trunk endurance &amp; control</div>
+        <ul class="bat-list">
+          <li>Side Plank — Right <span class="metric">time</span></li>
+          <li>Side Plank — Left <span class="metric">time</span></li>
+          <li>Plank <span class="metric">time</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Movement framework -->
+  <section class="section">
+    <h2 class="section-h y"><span>02.</span> Fundamental movement framework</h2>
+    <p class="section-intro">Six patterns underpin every programme. Each pattern is leveled — athletes progress through it as their movement quality and loading capacity allow, not because they've hit a calendar date. <strong>Earn the next level on the floor.</strong></p>
+
+    <div class="moves">
+      <div class="move">
+        <div class="move-name">Squat</div>
+        <div class="move-level">Up to Level 4</div>
+        <div class="move-ex">Back Squat variations</div>
+      </div>
+      <div class="move">
+        <div class="move-name">Lunge</div>
+        <div class="move-level">Up to Level 4</div>
+        <div class="move-ex">Dynamic Lunge Matrix</div>
+      </div>
+      <div class="move">
+        <div class="move-name">Hinge</div>
+        <div class="move-level">Up to Level 4</div>
+        <div class="move-ex">Hex Bar Deadlift</div>
+      </div>
+      <div class="move">
+        <div class="move-name">Push</div>
+        <div class="move-level">Up to Level 4</div>
+        <div class="move-ex">Bench Press variations</div>
+      </div>
+      <div class="move">
+        <div class="move-name">Pull</div>
+        <div class="move-level">Up to Level 4</div>
+        <div class="move-ex">Tempo Chin-Up progressions</div>
+      </div>
+      <div class="move">
+        <div class="move-name">Brace</div>
+        <div class="move-level">Up to Level 4</div>
+        <div class="move-ex">Hanging &amp; Raised positions</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Programming -->
+  <section class="section">
+    <h2 class="section-h m"><span>03.</span> Programming around the playing week</h2>
+    <p class="section-intro">For competing athletes, the gym serves the sport — not the other way round. We build the week around match day. When the calendar allows we push strength; when it doesn't, we use match day primers to keep the athlete sharp without leaving anything on the gym floor.</p>
+
+    <div class="prog-flow">
+      <div class="prog-week">
+        <div class="prog-day">
+          <div class="prog-day-lbl">Mon</div>
+          <div class="prog-day-type">Recovery</div>
+        </div>
+        <div class="prog-day strength">
+          <div class="prog-day-lbl">Tue</div>
+          <div class="prog-day-type">Strength</div>
+        </div>
+        <div class="prog-day strength">
+          <div class="prog-day-lbl">Wed</div>
+          <div class="prog-day-type">Strength</div>
+        </div>
+        <div class="prog-day">
+          <div class="prog-day-lbl">Thu</div>
+          <div class="prog-day-type">Sport</div>
+        </div>
+        <div class="prog-day primer">
+          <div class="prog-day-lbl">Fri</div>
+          <div class="prog-day-type">MD-1 Primer</div>
+        </div>
+        <div class="prog-day match">
+          <div class="prog-day-lbl">Sat</div>
+          <div class="prog-day-type">Match Day</div>
+        </div>
+        <div class="prog-day primer">
+          <div class="prog-day-lbl">Sun</div>
+          <div class="prog-day-type">MD+1 Recovery</div>
+        </div>
+      </div>
+      <div class="prog-key">
+        <strong>Strength days</strong> (Tue/Wed) sit furthest from match. <strong>MD-1 primer</strong> is a short, sharp session: maintain neural drive without inducing fatigue. <strong>MD+1</strong> is restorative — flush the system, address anything that came out of the game. Match day governs the week. If fixture density changes, the programme changes with it.
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: LTAD -->
+  <section class="section">
+    <h2 class="section-h l"><span>04.</span> Long-term athlete development</h2>
+    <p class="section-intro">The numbers above are a snapshot. Real development happens over years, not weeks. We work with athletes through growth phases, into senior performance, and beyond. The principle is straightforward: <strong>get the right work in at the right time, then keep showing up.</strong></p>
+
+    <div class="ladder">
+      <div class="ladder-step">
+        <div class="ladder-stage">Stage 1 &middot; Build</div>
+        <div class="ladder-h">Movement quality first</div>
+        <div class="ladder-body">Younger and developing athletes work on the movement patterns before they're loaded heavily. We're not chasing numbers at this stage — we're building the chassis. Growth-related setbacks are normal and planned around.</div>
+      </div>
+      <div class="ladder-step">
+        <div class="ladder-stage">Stage 2 &middot; Load</div>
+        <div class="ladder-h">Strength becomes the priority</div>
+        <div class="ladder-body">Once movement quality is in place, the loading goes up. This is where strength, power and speed metrics start moving meaningfully. Periodisation gets more deliberate. Testing cadence picks up.</div>
+      </div>
+      <div class="ladder-step">
+        <div class="ladder-stage">Stage 3 &middot; Compete</div>
+        <div class="ladder-h">Programme serves performance</div>
+        <div class="ladder-body">Senior competitive athletes work the gym around their playing week. Strength is maintained, peak performance is protected, and we use longitudinal data to spot what needs sharpening before it becomes a problem.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div>Proformance Athlete Development Limited &middot; Company No. 14717366</div>
+    <div><a href="index.html">Home</a> &middot; <a href="team.html">The Team</a> &middot; <a href="contact.html">Contact</a></div>
+  </footer>
+
+</div>
+
+</body>
+</html>

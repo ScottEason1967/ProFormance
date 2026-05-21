@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Proformance Athlete Development &middot; Strength &amp; Conditioning for Professional and Aspiring Athletes</title>
+<style>
+  :root {
+    --pf-black: #0A0A0A;
+    --pf-black-deep: #000000;
+    --pf-charcoal: #161A1F;
+    --pf-card: #14181D;
+    --pf-card-lift: #1A1F26;
+    --pf-cyan: #00BCE4;
+    --pf-cyan-bright: #1DD3F0;
+    --pf-cyan-dim: #007A95;
+    --pf-yellow: #F5C518;
+    --pf-magenta: #E91E63;
+    --pf-lime: #B5D935;
+    --pf-text: #F5F7FA;
+    --pf-text-sec: #B8C2CC;
+    --pf-text-muted: #6C7984;
+    --pf-border: #2A3037;
+    --pf-border-lt: #1F252B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    background: var(--pf-black);
+    color: var(--pf-text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  a { color: var(--pf-cyan); text-decoration: none; }
+  a:hover { color: var(--pf-cyan-bright); }
+
+  /* Top nav */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--pf-border-lt);
+    padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .topnav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .topnav-brand img { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; }
+  .topnav-brand-text { display: flex; flex-direction: column; line-height: 1; }
+  .topnav-brand-name { font-size: 16px; font-weight: 900; letter-spacing: -0.3px; color: var(--pf-text); }
+  .topnav-brand-name span { color: var(--pf-cyan); }
+  .topnav-brand-tag { font-size: 9px; font-weight: 700; letter-spacing: 2.2px; color: var(--pf-text-muted); text-transform: uppercase; margin-top: 4px; }
+  .topnav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .topnav-links a { font-size: 13px; font-weight: 600; color: var(--pf-text-sec); padding: 8px 14px; border-radius: 6px; letter-spacing: 0.1px; transition: background 0.18s, color 0.18s; }
+  .topnav-links a:hover { background: rgba(0,188,228,0.10); color: var(--pf-cyan); }
+  .topnav-links a.active { background: var(--pf-cyan); color: var(--pf-black); }
+
+  .page { max-width: 1200px; margin: 0 auto; padding: 64px 40px 0; }
+
+  /* Hero */
+  .hero { position: relative; margin-bottom: 72px; padding-bottom: 24px; }
+  .hero-rule { width: 72px; height: 4px; background: var(--pf-cyan); border-radius: 2px; margin-bottom: 22px; }
+  .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.6px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 22px; }
+  .hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
+  .hero-title { font-size: 60px; font-weight: 900; color: var(--pf-text); letter-spacing: -1.8px; line-height: 1.02; margin-bottom: 20px; }
+  .hero-title em { color: var(--pf-cyan); font-style: normal; }
+  .hero-sub { font-size: 17.5px; color: var(--pf-text-sec); line-height: 1.65; max-width: 560px; margin-bottom: 14px; }
+  .hero-sub strong { color: var(--pf-text); font-weight: 600; }
+  .hero-meta { display: flex; gap: 28px; margin-top: 30px; flex-wrap: wrap; }
+  .hero-meta-item { display: flex; flex-direction: column; }
+  .hero-meta-num { font-size: 34px; font-weight: 900; color: var(--pf-cyan); letter-spacing: -1px; line-height: 1; }
+  .hero-meta-lbl { font-size: 11px; font-weight: 700; color: var(--pf-text-muted); text-transform: uppercase; letter-spacing: 1.4px; margin-top: 6px; }
+
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--pf-black-deep);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px var(--pf-border);
+  }
+  .hero-visual img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-visual-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, transparent 40%, rgba(10,10,10,0.85) 100%);
+  }
+  .hero-visual-stamp {
+    position: absolute; bottom: 20px; left: 22px; right: 22px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .hero-visual-stamp-lbl { font-size: 10px; font-weight: 800; letter-spacing: 2px; color: var(--pf-cyan); text-transform: uppercase; }
+  .hero-visual-stamp-txt { font-size: 14px; font-weight: 700; color: var(--pf-text); line-height: 1.4; }
+
+  /* What we do — tile grid */
+  .section { margin-bottom: 80px; }
+  .section-rule { width: 72px; height: 4px; background: var(--pf-cyan); border-radius: 2px; margin-bottom: 18px; }
+  .section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.6px; color: var(--pf-text-muted); text-transform: uppercase; margin-bottom: 14px; }
+  .section-title { font-size: 38px; font-weight: 900; color: var(--pf-text); letter-spacing: -1px; line-height: 1.08; margin-bottom: 14px; }
+  .section-intro { font-size: 16px; color: var(--pf-text-sec); line-height: 1.7; max-width: 720px; margin-bottom: 36px; }
+  .section-intro strong { color: var(--pf-text); font-weight: 600; }
+
+  .tile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .tile {
+    background: var(--pf-card);
+    border: 1px solid var(--pf-border-lt);
+    border-radius: 16px;
+    padding: 32px 32px 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.22s, border-color 0.18s;
+    position: relative;
+    display: flex; flex-direction: column;
+    min-height: 280px;
+    overflow: hidden;
+  }
+  .tile::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--accent, var(--pf-cyan));
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--pf-border); box-shadow: 0 14px 38px rgba(0,0,0,0.5); }
+  .tile-num { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--accent, var(--pf-cyan)); text-transform: uppercase; margin-bottom: 14px; }
+  .tile-title { font-size: 22px; font-weight: 800; color: var(--pf-text); letter-spacing: -0.4px; line-height: 1.15; margin-bottom: 12px; }
+  .tile-body { font-size: 14px; color: var(--pf-text-sec); line-height: 1.65; flex-grow: 1; }
+  .tile-body strong { color: var(--pf-text); font-weight: 600; }
+  .tile-cta { font-size: 12px; font-weight: 700; color: var(--accent, var(--pf-cyan)); letter-spacing: 0.4px; margin-top: 20px; text-transform: uppercase; }
+  .tile-cta::after { content: ' →'; transition: padding 0.18s; }
+  .tile:hover .tile-cta::after { padding-left: 4px; }
+
+  .tile-testing { --accent: var(--pf-cyan); }
+  .tile-strength { --accent: var(--pf-yellow); }
+  .tile-science { --accent: var(--pf-magenta); }
+  .tile-programming { --accent: var(--pf-lime); }
+
+  /* Testimonial */
+  .testimonial {
+    background: var(--pf-card);
+    border: 1px solid var(--pf-border-lt);
+    border-left: 4px solid var(--pf-cyan);
+    border-radius: 16px;
+    padding: 44px 48px;
+    margin-bottom: 80px;
+    position: relative;
+  }
+  .testimonial-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.6px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 18px; }
+  .testimonial-quote { font-size: 22px; font-weight: 500; color: var(--pf-text); line-height: 1.5; letter-spacing: -0.3px; margin-bottom: 22px; }
+  .testimonial-quote em { color: var(--pf-cyan); font-style: normal; font-weight: 600; }
+  .testimonial-attribution { font-size: 13px; color: var(--pf-text-muted); letter-spacing: 0.3px; }
+  .testimonial-attribution strong { color: var(--pf-text); font-weight: 700; }
+
+  /* Cast / team preview */
+  .cast-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .actor {
+    background: var(--pf-card);
+    border: 1px solid var(--pf-border-lt);
+    border-radius: 14px;
+    padding: 22px 18px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+    display: block;
+  }
+  .actor:hover { transform: translateY(-3px); border-color: var(--pf-cyan); box-shadow: 0 10px 28px rgba(0,0,0,0.5); }
+  .actor-portrait {
+    width: 96px; height: 96px;
+    margin: 4px auto 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pf-charcoal) 0%, var(--pf-card-lift) 100%);
+    border: 2px solid var(--pf-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 900; color: var(--pf-cyan); letter-spacing: -1px;
+    overflow: hidden;
+    transition: border-color 0.18s;
+  }
+  .actor:hover .actor-portrait { border-color: var(--pf-cyan); }
+  .actor-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .actor-name { font-size: 14px; font-weight: 800; color: var(--pf-text); letter-spacing: -0.2px; }
+  .actor-role { font-size: 9.5px; font-weight: 800; color: var(--pf-cyan); text-transform: uppercase; letter-spacing: 1.4px; margin-top: 4px; }
+  .actor-quals { font-size: 10.5px; color: var(--pf-text-muted); margin-top: 6px; letter-spacing: 0.3px; }
+  .actor.placeholder .actor-portrait { background: repeating-linear-gradient(45deg, var(--pf-charcoal), var(--pf-charcoal) 6px, var(--pf-card) 6px, var(--pf-card) 12px); color: var(--pf-text-muted); font-size: 11px; letter-spacing: 1.2px; }
+  .actor.placeholder .actor-name { color: var(--pf-text-muted); }
+
+  /* Footer */
+  .foot {
+    margin-top: 60px;
+    padding: 40px 0 36px;
+    border-top: 1px solid var(--pf-border-lt);
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px;
+  }
+  .foot-brand-name { font-size: 18px; font-weight: 900; color: var(--pf-text); letter-spacing: -0.4px; margin-bottom: 6px; }
+  .foot-brand-name span { color: var(--pf-cyan); }
+  .foot-brand-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--pf-text-muted); text-transform: uppercase; margin-bottom: 12px; }
+  .foot-addr, .foot-meta { font-size: 12px; color: var(--pf-text-muted); line-height: 1.7; }
+  .foot-h { font-size: 11px; font-weight: 800; color: var(--pf-text-sec); letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 12px; }
+  .foot a { color: var(--pf-text-sec); }
+  .foot a:hover { color: var(--pf-cyan); }
+  .foot-bottom { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--pf-border-lt); font-size: 11px; color: var(--pf-text-muted); }
+
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 42px; }
+    .tile-grid { grid-template-columns: 1fr; }
+    .cast-grid { grid-template-columns: repeat(2, 1fr); }
+    .foot { grid-template-columns: 1fr; gap: 24px; }
+    .page { padding: 40px 22px 0; }
+    .topnav { padding: 12px 22px; }
+    .testimonial { padding: 28px 24px; }
+    .testimonial-quote { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html" class="topnav-brand">
+    <img src="assets/images/proformance-logo.jpg" alt="Proformance">
+    <div class="topnav-brand-text">
+      <div class="topnav-brand-name"><span>PRO</span>FORMANCE</div>
+      <div class="topnav-brand-tag">Athlete Development</div>
+    </div>
+  </a>
+  <div class="topnav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="approach.html">Our Approach</a>
+    <a href="team.html">The Team</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-rule"></div>
+    <div class="hero-eyebrow">Proformance &middot; Sunderland</div>
+    <div class="hero-grid">
+      <div>
+        <h1 class="hero-title">Strength and conditioning for athletes who take it <em>seriously</em>.</h1>
+        <p class="hero-sub">Proformance is a specialist S&amp;C facility working with professional and aspiring athletes from across the North East and beyond. <strong>Sports science led, individualised programming, long-term athlete development.</strong></p>
+        <p class="hero-sub">We work with young athletes still building, senior athletes refining, and everyone in between. The programme is built around testing, not guesswork.</p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="hero-meta-num">10+</div>
+            <div class="hero-meta-lbl">Years coaching elite athletes</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-num">5</div>
+            <div class="hero-meta-lbl">Coaches on the floor</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-num">1:1</div>
+            <div class="hero-meta-lbl">Programming, every athlete</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/images/proformance-logo.jpg" alt="Proformance Athlete Development">
+        <div class="hero-visual-overlay"></div>
+        <div class="hero-visual-stamp">
+          <div class="hero-visual-stamp-lbl">Beacon of Light &middot; Sunderland</div>
+          <div class="hero-visual-stamp-txt">Specialist strength &amp; conditioning facility, with the kit and the coaches to do the work properly.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="section">
+    <div class="section-rule"></div>
+    <div class="section-eyebrow">What we do</div>
+    <h2 class="section-title">Four things we do, properly.</h2>
+    <p class="section-intro">Performance is built, not bought. <strong>Test. Train. Track. Adapt.</strong> Every athlete that walks through the door gets a programme built around their data, their sport, and where they're at in their season — and we keep tightening it as the numbers move.</p>
+
+    <div class="tile-grid">
+      <a href="approach.html" class="tile tile-testing">
+        <div class="tile-num">01 &middot; Testing</div>
+        <div class="tile-title">Performance testing across speed, power, strength and core</div>
+        <p class="tile-body">5m and 10m sprints, broad jump, countermovement and Abalakov jump, drop jump RSI, isometric mid-thigh pull with bodyweight ratios, plank holds. <strong>Numbers in, numbers out</strong> — every test gets re-run on a cycle so progress is measured, not assumed.</p>
+        <span class="tile-cta">How we test</span>
+      </a>
+      <a href="approach.html" class="tile tile-strength">
+        <div class="tile-num">02 &middot; Strength &amp; conditioning</div>
+        <div class="tile-title">Six fundamental movement patterns, leveled across the programme</div>
+        <p class="tile-body">Squat, lunge, hinge, push, pull, brace. Athletes work through progressions — back squat to bench, hex bar deadlift to tempo chin-up — at the level their movement and loading capacity allow. <strong>Earn the next level on the floor</strong>, not on the calendar.</p>
+        <span class="tile-cta">Movement framework</span>
+      </a>
+      <a href="approach.html" class="tile tile-science">
+        <div class="tile-num">03 &middot; Sports science</div>
+        <div class="tile-title">Longitudinal data on every athlete, every season</div>
+        <p class="tile-body">Sports science isn't a buzzword here — it's how every programme gets written. We hold testing data across years so we can see what's actually changing, what's stalled, and what needs a different stimulus. <strong>The data drives the decisions.</strong></p>
+        <span class="tile-cta">Our methodology</span>
+      </a>
+      <a href="approach.html" class="tile tile-programming">
+        <div class="tile-num">04 &middot; Programming</div>
+        <div class="tile-title">Built around the playing week, not the gym</div>
+        <p class="tile-body">If an athlete is playing competitively, the programme is built around match day. Strength focus when the calendar allows, MD+/-1 primers when it doesn't. <strong>S&amp;C serves performance</strong> — it doesn't compete with it.</p>
+        <span class="tile-cta">How we periodise</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Testimonial / case study pull -->
+  <section class="testimonial">
+    <div class="testimonial-eyebrow">In Practice &middot; Athlete Development</div>
+    <p class="testimonial-quote">&ldquo;He is like a sponge. He listens, commits and I only need to show him something once and he's away with it. He has put in hours and hours of hard graft over many years. <em>A prime example of the benefit of getting someone in a programme early and he is now excelling.</em>&rdquo;</p>
+    <div class="testimonial-attribution"><strong>Lee Moore</strong>, Head Coach, on a Proformance athlete coached over nine years &middot; Dec 2023</div>
+  </section>
+
+  <!-- The team -->
+  <section class="section">
+    <div class="section-rule"></div>
+    <div class="section-eyebrow">The coaches</div>
+    <h2 class="section-title">The people on the floor.</h2>
+    <p class="section-intro">Proformance is led by <strong>Lee Moore</strong>, founder and head coach, alongside a team of qualified S&amp;C coaches. Every coach on the floor is involved in programme design and athlete delivery — there are no &lsquo;floor staff&rsquo; reading from a sheet.</p>
+
+    <div class="cast-grid">
+      <a href="lee-moore.html" class="actor">
+        <div class="actor-portrait">LM</div>
+        <div class="actor-name">Lee Moore</div>
+        <div class="actor-role">Founder &middot; Head Coach</div>
+        <div class="actor-quals">MSc BSc BWL CSAC ASCC</div>
+      </a>
+      <a href="keith-mcgrath.html" class="actor">
+        <div class="actor-portrait">KM</div>
+        <div class="actor-name">Keith McGrath</div>
+        <div class="actor-role">S&amp;C Coach</div>
+        <div class="actor-quals">Qualifications TBC</div>
+      </a>
+      <a href="mackenzie-heaney.html" class="actor">
+        <div class="actor-portrait">MH</div>
+        <div class="actor-name">Mackenzie Heaney</div>
+        <div class="actor-role">S&amp;C Coach</div>
+        <div class="actor-quals">Qualifications TBC</div>
+      </a>
+      <a href="team.html" class="actor placeholder">
+        <div class="actor-portrait">TBC</div>
+        <div class="actor-name">Coach</div>
+        <div class="actor-role">Profile to follow</div>
+        <div class="actor-quals">&nbsp;</div>
+      </a>
+      <a href="team.html" class="actor placeholder">
+        <div class="actor-portrait">TBC</div>
+        <div class="actor-name">Coach</div>
+        <div class="actor-role">Profile to follow</div>
+        <div class="actor-quals">&nbsp;</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="foot">
+    <div>
+      <div class="foot-brand-name"><span>PRO</span>FORMANCE</div>
+      <div class="foot-brand-tag">Athlete Development</div>
+      <div class="foot-meta">Specialist strength &amp; conditioning for professional and aspiring athletes.</div>
+    </div>
+    <div>
+      <div class="foot-h">Find us</div>
+      <div class="foot-addr">
+        Beacon Of Light<br>
+        Vaux Brewery Way<br>
+        Sunderland<br>
+        Tyne and Wear<br>
+        SR5 1SN
+      </div>
+    </div>
+    <div>
+      <div class="foot-h">Quick links</div>
+      <div class="foot-meta">
+        <a href="approach.html">Our Approach</a><br>
+        <a href="team.html">The Team</a><br>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom" style="grid-column: 1 / -1;">
+      Proformance Athlete Development Limited &middot; Company registered in England and Wales No. 14717366
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

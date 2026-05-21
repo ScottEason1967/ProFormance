@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lee Moore &middot; Founder &amp; Head Coach &middot; Proformance Athlete Development</title>
+<style>
+  :root {
+    --pf-black: #0A0A0A; --pf-black-deep: #000000; --pf-charcoal: #161A1F;
+    --pf-card: #14181D; --pf-card-lift: #1A1F26;
+    --pf-cyan: #00BCE4; --pf-cyan-bright: #1DD3F0; --pf-cyan-dim: #007A95;
+    --pf-yellow: #F5C518; --pf-magenta: #E91E63; --pf-lime: #B5D935;
+    --pf-text: #F5F7FA; --pf-text-sec: #B8C2CC; --pf-text-muted: #6C7984;
+    --pf-border: #2A3037; --pf-border-lt: #1F252B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    background: var(--pf-black); color: var(--pf-text); line-height: 1.6;
+    -webkit-font-smoothing: antialiased; min-height: 100vh;
+  }
+  a { color: var(--pf-cyan); text-decoration: none; }
+  a:hover { color: var(--pf-cyan-bright); }
+
+  .topnav { position: sticky; top: 0; z-index: 50; background: rgba(10,10,10,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--pf-border-lt); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .topnav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .topnav-brand img { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; }
+  .topnav-brand-text { display: flex; flex-direction: column; line-height: 1; }
+  .topnav-brand-name { font-size: 16px; font-weight: 900; letter-spacing: -0.3px; color: var(--pf-text); }
+  .topnav-brand-name span { color: var(--pf-cyan); }
+  .topnav-brand-tag { font-size: 9px; font-weight: 700; letter-spacing: 2.2px; color: var(--pf-text-muted); text-transform: uppercase; margin-top: 4px; }
+  .topnav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .topnav-links a { font-size: 13px; font-weight: 600; color: var(--pf-text-sec); padding: 8px 14px; border-radius: 6px; }
+  .topnav-links a:hover { background: rgba(0,188,228,0.10); color: var(--pf-cyan); }
+  .topnav-links a.active { background: var(--pf-cyan); color: var(--pf-black); }
+
+  /* Sub-nav for team members */
+  .subnav { background: var(--pf-charcoal); border-bottom: 1px solid var(--pf-border-lt); padding: 12px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .subnav-back { font-size: 12px; font-weight: 700; color: var(--pf-cyan); display: inline-flex; align-items: center; gap: 6px; }
+  .subnav-siblings { display: flex; gap: 4px; flex-wrap: wrap; }
+  .subnav-siblings a { font-size: 11.5px; font-weight: 600; color: var(--pf-text-muted); padding: 6px 12px; border-radius: 6px; letter-spacing: 0.2px; }
+  .subnav-siblings a:hover { background: rgba(0,188,228,0.10); color: var(--pf-cyan); }
+  .subnav-siblings a.active { background: var(--pf-cyan); color: var(--pf-black); }
+  .subnav-siblings a.disabled { color: var(--pf-text-muted); pointer-events: none; opacity: 0.5; }
+
+  .page { max-width: 1080px; margin: 0 auto; padding: 50px 40px 80px; }
+
+  .h-rule { width: 72px; height: 4px; background: var(--pf-cyan); border-radius: 2px; margin-bottom: 18px; }
+  .h-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.6px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 18px; }
+
+  .h-flex { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: center; margin-bottom: 56px; }
+  .h-title { font-size: 60px; font-weight: 900; color: var(--pf-text); letter-spacing: -1.8px; line-height: 1.02; margin-bottom: 12px; }
+  .h-role { font-size: 12px; font-weight: 800; letter-spacing: 2.2px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 22px; }
+  .h-quote {
+    font-size: 19px; color: var(--pf-text); line-height: 1.55; font-weight: 500; font-style: italic;
+    border-left: 4px solid var(--pf-cyan); padding-left: 18px; margin-bottom: 20px; max-width: 540px;
+  }
+  .h-bio { font-size: 15.5px; color: var(--pf-text-sec); line-height: 1.75; }
+  .h-bio strong { color: var(--pf-text); font-weight: 600; }
+
+  .h-portrait {
+    aspect-ratio: 1 / 1; max-width: 360px; margin: 0 auto;
+    border-radius: 22px; overflow: hidden;
+    background: linear-gradient(135deg, var(--pf-charcoal) 0%, var(--pf-card-lift) 100%);
+    border: 1px solid var(--pf-border);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .h-portrait-initials { font-size: 110px; font-weight: 900; color: var(--pf-cyan); letter-spacing: -4px; opacity: 0.9; }
+  .h-portrait-note { position: absolute; bottom: 18px; left: 18px; right: 18px; font-size: 11px; color: var(--pf-text-muted); letter-spacing: 0.4px; text-align: center; }
+  .h-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+  /* Section */
+  .section-h { font-size: 28px; font-weight: 900; color: var(--pf-text); letter-spacing: -0.6px; margin: 56px 0 14px; line-height: 1.2; }
+  .section-h span { color: var(--pf-cyan); }
+  .section-body { font-size: 15.5px; color: var(--pf-text-sec); line-height: 1.8; max-width: 820px; }
+  .section-body strong { color: var(--pf-text); font-weight: 600; }
+  .section-body p { margin-bottom: 14px; }
+
+  /* Qualifications grid */
+  .quals { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 22px; margin-bottom: 14px; }
+  .qual {
+    background: var(--pf-card); border: 1px solid var(--pf-border-lt); border-radius: 12px;
+    padding: 18px 14px; text-align: center;
+  }
+  .qual-letters { font-size: 22px; font-weight: 900; color: var(--pf-cyan); letter-spacing: -0.5px; margin-bottom: 8px; }
+  .qual-name { font-size: 11px; font-weight: 700; color: var(--pf-text); line-height: 1.35; min-height: 30px; }
+  .qual-context { font-size: 10px; color: var(--pf-text-muted); margin-top: 8px; line-height: 1.4; letter-spacing: 0.2px; }
+  .qual.tbc .qual-letters { color: var(--pf-yellow); }
+  .qual.tbc .qual-name { color: var(--pf-text-muted); font-style: italic; }
+
+  .quals-note {
+    font-size: 12px; color: var(--pf-text-muted); margin-top: 10px; line-height: 1.6;
+    background: rgba(245,197,24,0.06); border-left: 3px solid var(--pf-yellow); padding: 12px 16px; border-radius: 6px;
+  }
+
+  /* Case study card */
+  .case-study {
+    background: var(--pf-card); border: 1px solid var(--pf-border-lt); border-radius: 16px;
+    padding: 36px 40px; margin-top: 24px;
+    border-left: 4px solid var(--pf-cyan);
+  }
+  .cs-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2.2px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 14px; }
+  .cs-h { font-size: 22px; font-weight: 800; color: var(--pf-text); letter-spacing: -0.4px; margin-bottom: 14px; line-height: 1.25; }
+  .cs-body { font-size: 14.5px; color: var(--pf-text-sec); line-height: 1.8; }
+  .cs-body p { margin-bottom: 14px; }
+  .cs-body strong { color: var(--pf-text); font-weight: 600; }
+  .cs-body em { color: var(--pf-cyan); font-style: normal; font-weight: 500; }
+
+  .cs-traits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0; }
+  .cs-trait { background: var(--pf-card-lift); border: 1px solid var(--pf-border-lt); border-radius: 10px; padding: 16px 18px; }
+  .cs-trait-h { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--pf-cyan); text-transform: uppercase; margin-bottom: 8px; }
+  .cs-trait-body { font-size: 12.5px; color: var(--pf-text-sec); line-height: 1.6; }
+
+  .cs-pull { font-size: 18px; color: var(--pf-text); line-height: 1.55; font-style: italic; padding: 18px 0 6px; border-top: 1px dashed var(--pf-border); margin-top: 20px; }
+  .cs-attr { font-size: 12px; color: var(--pf-text-muted); margin-top: 10px; letter-spacing: 0.3px; }
+  .cs-attr strong { color: var(--pf-text); }
+
+  .foot { margin-top: 80px; padding: 30px 0 0; border-top: 1px solid var(--pf-border-lt); font-size: 12px; color: var(--pf-text-muted); display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .foot a { color: var(--pf-text-sec); }
+  .foot a:hover { color: var(--pf-cyan); }
+
+  @media (max-width: 980px) {
+    .h-flex { grid-template-columns: 1fr; gap: 32px; }
+    .h-title { font-size: 42px; }
+    .h-portrait { max-width: 280px; }
+    .quals { grid-template-columns: repeat(2, 1fr); }
+    .cs-traits { grid-template-columns: 1fr; }
+    .case-study { padding: 24px 22px; }
+    .page { padding: 36px 22px 60px; }
+    .topnav, .subnav { padding: 12px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html" class="topnav-brand">
+    <img src="assets/images/proformance-logo.jpg" alt="Proformance">
+    <div class="topnav-brand-text">
+      <div class="topnav-brand-name"><span>PRO</span>FORMANCE</div>
+      <div class="topnav-brand-tag">Athlete Development</div>
+    </div>
+  </a>
+  <div class="topnav-links">
+    <a href="index.html">Home</a>
+    <a href="approach.html">Our Approach</a>
+    <a href="team.html" class="active">The Team</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<nav class="subnav">
+  <a href="team.html" class="subnav-back">&larr; The Team</a>
+  <div class="subnav-siblings">
+    <a href="lee-moore.html" class="active">Lee Moore</a>
+    <a href="keith-mcgrath.html">Keith McGrath</a>
+    <a href="mackenzie-heaney.html">Mackenzie Heaney</a>
+    <a class="disabled">Coach (TBC)</a>
+    <a class="disabled">Coach (TBC)</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="h-rule"></div>
+  <div class="h-eyebrow">Meet the Team &middot; Founder</div>
+
+  <div class="h-flex">
+    <div>
+      <h1 class="h-title">Lee Moore.</h1>
+      <div class="h-role">Founder &middot; Head Coach</div>
+      <div class="h-quote">&ldquo;Get someone in a programme early. Show them once. Keep showing up. The rest is graft.&rdquo;</div>
+      <p class="h-bio">Lee is the founder and head coach at Proformance. <strong>Sports science background, more than a decade on the gym floor with elite and developing athletes.</strong> The methodology Proformance runs — the testing battery, the levels system, the long-term arc — is his.</p>
+      <p class="h-bio" style="margin-top: 14px;">Lee's coaching philosophy is straightforward: build the chassis first, load it when it can take it, and keep testing so progress is measurable. He's worked with athletes through growth phases into senior performance, and the long-term relationships speak for themselves.</p>
+    </div>
+    <div class="h-portrait">
+      <div class="h-portrait-initials">LM</div>
+      <div class="h-portrait-note">Photograph to follow</div>
+    </div>
+  </div>
+
+  <!-- Qualifications -->
+  <h2 class="section-h"><span>01.</span> Qualifications</h2>
+  <p class="section-body">Lee holds the following formal qualifications and accreditations.</p>
+
+  <div class="quals">
+    <div class="qual">
+      <div class="qual-letters">MSc</div>
+      <div class="qual-name">Master of Science</div>
+      <div class="qual-context">Postgraduate</div>
+    </div>
+    <div class="qual">
+      <div class="qual-letters">BSc</div>
+      <div class="qual-name">Bachelor of Science</div>
+      <div class="qual-context">Undergraduate</div>
+    </div>
+    <div class="qual">
+      <div class="qual-letters">BWL</div>
+      <div class="qual-name">British Weight Lifting</div>
+      <div class="qual-context">Coaching accreditation</div>
+    </div>
+    <div class="qual tbc">
+      <div class="qual-letters">CSAC</div>
+      <div class="qual-name">Awarding body to confirm</div>
+      <div class="qual-context">Detail to follow</div>
+    </div>
+    <div class="qual">
+      <div class="qual-letters">ASCC</div>
+      <div class="qual-name">Accredited Strength &amp; Conditioning Coach</div>
+      <div class="qual-context">UKSCA</div>
+    </div>
+  </div>
+
+  <div class="quals-note">
+    <strong>Note for Scott:</strong> MSc and BSc subjects to be confirmed (likely Strength &amp; Conditioning or Sports Science but not stated on file). The CSAC accreditation needs confirming &mdash; left as a placeholder rather than guessed at. ASCC interpreted as the UKSCA Accredited Strength and Conditioning Coach designation, the standard British S&amp;C accreditation, which fits the context.
+  </div>
+
+  <!-- Coaching philosophy -->
+  <h2 class="section-h"><span>02.</span> Coaching philosophy</h2>
+  <div class="section-body">
+    <p>Lee's approach is built on three principles, drawn from years of working with the same athletes across their development.</p>
+    <p><strong>One: get them in early.</strong> The athletes who go furthest are the ones who started building movement quality and consistency before the growth-related setbacks hit. The earlier the foundations go down, the more durable the senior athlete is.</p>
+    <p><strong>Two: long-term relationships beat short-term sessions.</strong> Lee has worked with individual athletes for nine and ten years at a time. That continuity matters &mdash; knowing how an athlete responds to load, what they look like fresh vs. fatigued, when their technique is genuinely off vs. just a bad day. You can't get there in a six-week block.</p>
+    <p><strong>Three: the gym serves the sport.</strong> For competing athletes, the programme is dictated by the playing week. Strength work when the calendar allows, primers when it doesn't, and a willingness to back off when fixture density spikes. S&amp;C exists to make the athlete better on the pitch &mdash; not to give the coach impressive numbers on a chart.</p>
+  </div>
+
+  <!-- In Practice / case study -->
+  <h2 class="section-h"><span>03.</span> In Practice: a nine-year case study</h2>
+  <p class="section-body">In December 2023, Lee wrote a reference for one of his long-term athletes &mdash; a young footballer he had been coaching for nine years at that point. What he wrote captures how he thinks about athlete development. The traits he picks out, the language he uses, and what he says matters in a young athlete &mdash; it's the philosophy in action.</p>
+
+  <div class="case-study">
+    <div class="cs-eyebrow">Reference letter &middot; December 2023</div>
+    <div class="cs-h">Three words to describe a Proformance athlete</div>
+
+    <div class="cs-traits">
+      <div class="cs-trait">
+        <div class="cs-trait-h">Dedicated</div>
+        <div class="cs-trait-body">&ldquo;He is like a sponge. He listens, commits and I only need to show him something once and he's away with it. Hours and hours of hard graft over many years.&rdquo;</div>
+      </div>
+      <div class="cs-trait">
+        <div class="cs-trait-h">Resilient</div>
+        <div class="cs-trait-body">&ldquo;Growth-related issues significantly impacted his training. He never gave up, worked hard week in week out, always giving 100%. I never have to encourage him to work hard because he does it naturally.&rdquo;</div>
+      </div>
+      <div class="cs-trait">
+        <div class="cs-trait-h">Intelligent</div>
+        <div class="cs-trait-body">&ldquo;A clear understanding of the technical aspects of his sport, particularly running mechanics and speed optimisation. The improvements in his speed over the last few years have been ridiculous.&rdquo;</div>
+      </div>
+    </div>
+
+    <div class="cs-body">
+      <p>The athlete had been through growth-related setbacks in his younger years &mdash; a period that could easily have derailed a less resilient kid. Lee's view: those setbacks are normal, planned around, and ultimately part of the journey. <strong>What matters is consistency, not avoiding the dip.</strong></p>
+      <p>Nine years on, the athlete is &ldquo;a robust athlete, capable of withstanding the demanding physical rigors of his sport. He seamlessly navigates the intense training schedules and competitive matches without any setbacks.&rdquo; <em>That's what long-term athlete development looks like.</em></p>
+    </div>
+
+    <div class="cs-pull">&ldquo;A prime example of the benefit of getting someone in a programme early and he is now excelling.&rdquo;</div>
+    <div class="cs-attr"><strong>Lee Moore</strong>, Head Coach &middot; written reference, 1 December 2023</div>
+  </div>
+
+  <!-- Where to find Lee -->
+  <h2 class="section-h"><span>04.</span> Where you'll find Lee</h2>
+  <div class="section-body">
+    <p>On the floor at <strong>Beacon of Light, Sunderland</strong> &mdash; coaching sessions, running the testing battery, writing programmes. Lee is involved directly in every athlete's programme design, alongside the rest of the coaching team.</p>
+    <p>To get in touch about working with Lee or Proformance, see the <a href="contact.html">contact page</a>.</p>
+  </div>
+
+  <footer class="foot">
+    <div>Proformance Athlete Development Limited &middot; Company No. 14717366</div>
+    <div><a href="index.html">Home</a> &middot; <a href="approach.html">Our Approach</a> &middot; <a href="team.html">The Team</a></div>
+  </footer>
+
+</div>
+
+</body>
+</html>
